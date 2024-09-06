@@ -15,7 +15,7 @@ public class Main {
                     Class<?> clazz = method.getParameterTypes()[i];
                     params[i] = parse(br.readLine(), clazz);
                 }
-                System.out.println(method.invoke(solution, params));
+                System.out.println(toString(method.invoke(solution, params), method.getReturnType()));
             }
         }
     }
@@ -63,16 +63,22 @@ public class Main {
                 return Double.parseDouble(s);
             } else if (Objects.equals(clazz, String.class)) {
                 return s.substring(1, s.length() - 1);
+            } else if (Objects.equals(clazz, ListNode.class)) {
+                return new ListNode((int[]) Objects.requireNonNull(parse(s, int[].class)));
             }
         }
         return null;
     }
 
     private static List<String> splitAtComma(String s) {
-        if (s.charAt(1) != '[') return Arrays.asList(s.substring(1, s.length() - 1).split(","));
-
+        if (s.length() == 2) return Collections.emptyList();
+        else if (s.length() > 2 && s.charAt(1) != '[') {
+            return Arrays.asList(s.substring(1, s.length() - 1).split(","));
+        }
         List<String> list = new ArrayList<>();
-        int start = 1, end = 0, count = 0;
+        int start = 1;
+        int end = 0;
+        int count = 0;
         while (++end < s.length()) {
             if (s.charAt(end) == '[') {
                 count++;
@@ -86,4 +92,20 @@ public class Main {
         }
         return list;
     }
+
+    private static String toString(Object object, Class<?> clazz) {
+        if (clazz.isArray()) {
+            StringBuilder sb = new StringBuilder("[");
+            int length = Array.getLength(object);
+            for (int i = 0; i < length; i++) {
+                Object element = Array.get(object, i);
+                sb.append(toString(element, clazz.getComponentType())).append(",");
+            }
+            sb.setCharAt(sb.length() - 1, ']');
+            return sb.toString();
+        }
+        return object.toString();
+    }
+
+
 }
