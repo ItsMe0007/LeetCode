@@ -26,6 +26,19 @@ public class ListNode {
         }
     }
 
+    ListNode(String values) {
+        values = values.replaceAll("[\\[\\]]", "");
+        if (!values.isEmpty()) {
+            String[] parts = values.split(",");
+            this.val = Integer.parseInt(parts[0]);
+            ListNode last = this;
+            for (int i = 1; i < parts.length; i++) {
+                last.next = new ListNode(Integer.parseInt(parts[i]));
+                last = last.next;
+            }
+        }
+    }
+
     public String toString() {
         StringBuilder sb = new StringBuilder("[");
         ListNode curr = this;

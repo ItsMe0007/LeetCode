@@ -45,6 +45,10 @@ public class Main {
                         Array.set(array, i, Double.parseDouble(part));
                     } else if (Objects.equals(componentClazz, String.class)) {
                         Array.set(array, i, part.substring(1, part.length() - 1));
+                    } else if (Objects.equals(clazz, ListNode.class)) {
+                        return new ListNode(s);
+                    } else if (Objects.equals(clazz, TreeNode.class)) {
+                        return new TreeNode(s);
                     }
                 }
             }
@@ -65,7 +69,7 @@ public class Main {
             } else if (Objects.equals(clazz, String.class)) {
                 return s.substring(1, s.length() - 1);
             } else if (Objects.equals(clazz, ListNode.class)) {
-                return new ListNode((int[]) Objects.requireNonNull(parse(s, int[].class)));
+                return new ListNode(s);
             } else if (Objects.equals(clazz, TreeNode.class)) {
                 return new TreeNode(s);
             }
