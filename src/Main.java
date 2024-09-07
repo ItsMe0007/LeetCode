@@ -2,20 +2,21 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.lang.reflect.Array;
 import java.lang.reflect.Method;
+import java.lang.reflect.Modifier;
 import java.util.*;
 
 public class Main {
     public static void main(String[] args) throws Exception {
         Solution solution = new Solution();
-        Method method = solution.getClass().getDeclaredMethods()[0];
+        Optional<Method> method = Arrays.stream(solution.getClass().getDeclaredMethods()).filter(x -> Modifier.isPublic(x.getModifiers())).findFirst();
         try (BufferedReader br = new BufferedReader(new FileReader(".\\src\\TestCase.txt"))) {
-            while (br.ready()) {
-                Object[] params = new Object[method.getParameterCount()];
+            while (br.ready() && method.isPresent()) {
+                Object[] params = new Object[method.get().getParameterCount()];
                 for (int i = 0; i < params.length; i++) {
-                    Class<?> clazz = method.getParameterTypes()[i];
+                    Class<?> clazz = method.get().getParameterTypes()[i];
                     params[i] = parse(br.readLine(), clazz);
                 }
-                System.out.println(toString(method.invoke(solution, params), method.getReturnType()));
+                System.out.println(toString(method.get().invoke(solution, params), method.get().getReturnType()));
             }
         }
     }
