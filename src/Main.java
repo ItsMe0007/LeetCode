@@ -65,6 +65,8 @@ public class Main {
                 return s.substring(1, s.length() - 1);
             } else if (Objects.equals(clazz, ListNode.class)) {
                 return new ListNode((int[]) Objects.requireNonNull(parse(s, int[].class)));
+            } else if (Objects.equals(clazz, TreeNode.class)) {
+                return new TreeNode(s);
             }
         }
         return null;
