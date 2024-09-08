@@ -111,7 +111,7 @@ public class Main {
             sb.setCharAt(sb.length() - 1, ']');
             return sb.toString();
         }
-        return object.toString();
+        return Optional.ofNullable(object).orElse("null").toString();
     }
 
 
