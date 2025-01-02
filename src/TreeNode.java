@@ -2,7 +2,7 @@ import java.util.*;
 
 @SuppressWarnings("unused")
 public class TreeNode {
-    int val;
+    Integer val;
     TreeNode left;
     TreeNode right;
 

@@ -1,6 +1,6 @@
 @SuppressWarnings("unused")
 public class ListNode {
-    int val;
+    Integer val;
     ListNode next;
 
     ListNode() {
