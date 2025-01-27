@@ -30,10 +30,10 @@ public class ListNode {
         values = values.replaceAll("[\\[\\]]", "");
         if (!values.isEmpty()) {
             String[] parts = values.split(",");
-            this.val = Integer.parseInt(parts[0]);
+            this.val = Integer.parseInt(parts[0].trim());
             ListNode last = this;
             for (int i = 1; i < parts.length; i++) {
-                last.next = new ListNode(Integer.parseInt(parts[i]));
+                last.next = new ListNode(Integer.parseInt(parts[i].trim()));
                 last = last.next;
             }
         }

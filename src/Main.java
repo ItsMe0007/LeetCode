@@ -14,7 +14,7 @@ public class Main {
                 Object[] params = new Object[method.get().getParameterCount()];
                 for (int i = 0; i < params.length; i++) {
                     Class<?> clazz = method.get().getParameterTypes()[i];
-                    params[i] = parse(br.readLine(), clazz);
+                    params[i] = parse(br.readLine().trim(), clazz);
                 }
                 System.out.println(toString(method.get().invoke(solution, params), method.get().getReturnType()));
             }
@@ -30,7 +30,7 @@ public class Main {
                 if (componentClazz.isArray()) {
                     Array.set(array, i, parse(parts.get(i), clazz.getComponentType()));
                 } else {
-                    String part = parts.get(i);
+                    String part = parts.get(i).trim();
                     if (Objects.equals(componentClazz, int.class)) {
                         Array.set(array, i, Integer.parseInt(part));
                     } else if (Objects.equals(componentClazz, long.class)) {
