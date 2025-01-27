@@ -24,17 +24,17 @@ public class TreeNode {
         if (!data.isEmpty()) {
             String[] tokens = data.split(",");
             Queue<TreeNode> queue = new LinkedList<>();
-            this.val = Integer.parseInt(tokens[0]);
+            this.val = Integer.parseInt(tokens[0].trim());
             queue.add(this);
             int itr = 0;
             while (!queue.isEmpty() && itr < tokens.length) {
                 TreeNode current = queue.poll();
                 if (++itr < tokens.length && !"null".equals(tokens[itr])) {
-                    current.left = new TreeNode(Integer.parseInt(tokens[itr]));
+                    current.left = new TreeNode(Integer.parseInt(tokens[itr].trim()));
                     queue.add(current.left);
                 }
                 if (++itr < tokens.length && !"null".equals(tokens[itr])) {
-                    current.right = new TreeNode(Integer.parseInt(tokens[itr]));
+                    current.right = new TreeNode(Integer.parseInt(tokens[itr].trim()));
                     queue.add(current.right);
                 }
             }
