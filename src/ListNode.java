@@ -1,3 +1,5 @@
+import java.util.*;
+
 @SuppressWarnings("unused")
 public class ListNode {
     Integer val;
@@ -40,10 +42,16 @@ public class ListNode {
     }
 
     public String toString() {
+        Set<ListNode> visitedNodes = new HashSet<>();
         StringBuilder sb = new StringBuilder("[");
         ListNode curr = this;
         while (curr != null) {
             sb.append(curr.val).append(",");
+            if (visitedNodes.contains(curr)) {
+                sb.append("...").append(",");
+                break;
+            }
+            visitedNodes.add(curr);
             curr = curr.next;
         }
         sb.setCharAt(sb.length() - 1, ']');
