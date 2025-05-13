@@ -31,17 +31,17 @@ public class Main {
                     Array.set(array, i, parse(parts.get(i), clazz.getComponentType()));
                 } else {
                     String part = parts.get(i).trim();
-                    if (Objects.equals(componentClazz, int.class)) {
+                    if (Objects.equals(componentClazz, int.class) || Objects.equals(componentClazz, Integer.class)) {
                         Array.set(array, i, Integer.parseInt(part));
-                    } else if (Objects.equals(componentClazz, long.class)) {
+                    } else if (Objects.equals(componentClazz, long.class) || Objects.equals(componentClazz, Long.class)) {
                         Array.set(array, i, Long.parseLong(part));
-                    } else if (Objects.equals(componentClazz, char.class)) {
+                    } else if (Objects.equals(componentClazz, char.class) || Objects.equals(componentClazz, Character.class)) {
                         Array.set(array, i, part.charAt(1));
-                    } else if (Objects.equals(componentClazz, float.class)) {
+                    } else if (Objects.equals(componentClazz, float.class) || Objects.equals(componentClazz, Float.class)) {
                         Array.set(array, i, Float.parseFloat(part));
-                    } else if (Objects.equals(componentClazz, boolean.class)) {
+                    } else if (Objects.equals(componentClazz, boolean.class) || Objects.equals(componentClazz, Boolean.class)) {
                         Array.set(array, i, Boolean.parseBoolean(part));
-                    } else if (Objects.equals(componentClazz, double.class)) {
+                    } else if (Objects.equals(componentClazz, double.class) || Objects.equals(componentClazz, Double.class)) {
                         Array.set(array, i, Double.parseDouble(part));
                     } else if (Objects.equals(componentClazz, String.class)) {
                         Array.set(array, i, part.substring(1, part.length() - 1));
@@ -54,17 +54,17 @@ public class Main {
             }
             return array;
         } else {
-            if (Objects.equals(clazz, int.class)) {
+            if (Objects.equals(clazz, int.class) || Objects.equals(clazz, Integer.class)) {
                 return Integer.parseInt(s);
-            } else if (Objects.equals(clazz, long.class)) {
+            } else if (Objects.equals(clazz, long.class) || Objects.equals(clazz, Long.class)) {
                 return Long.parseLong(s);
-            } else if (Objects.equals(clazz, char.class)) {
+            } else if (Objects.equals(clazz, char.class) || Objects.equals(clazz, Character.class)) {
                 return s.charAt(1);
-            } else if (Objects.equals(clazz, float.class)) {
+            } else if (Objects.equals(clazz, float.class) || Objects.equals(clazz, Float.class)) {
                 return Float.parseFloat(s);
-            } else if (Objects.equals(clazz, boolean.class)) {
+            } else if (Objects.equals(clazz, boolean.class) || Objects.equals(clazz, Boolean.class)) {
                 return Boolean.parseBoolean(s);
-            } else if (Objects.equals(clazz, double.class)) {
+            } else if (Objects.equals(clazz, double.class) || Objects.equals(clazz, Double.class)) {
                 return Double.parseDouble(s);
             } else if (Objects.equals(clazz, String.class)) {
                 return s.substring(1, s.length() - 1);
