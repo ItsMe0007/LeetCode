@@ -1,22 +1,20 @@
+package main.java;
+
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+
 import java.util.*;
 
 @SuppressWarnings("unused")
+@NoArgsConstructor
+@AllArgsConstructor
 public class TreeNode {
     Integer val;
     TreeNode left;
     TreeNode right;
 
-    TreeNode() {
-    }
-
     TreeNode(int val) {
         this.val = val;
-    }
-
-    TreeNode(int val, TreeNode left, TreeNode right) {
-        this.val = val;
-        this.left = left;
-        this.right = right;
     }
 
     public TreeNode(String data) {

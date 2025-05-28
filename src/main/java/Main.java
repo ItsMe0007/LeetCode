@@ -1,3 +1,5 @@
+package main.java;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.lang.reflect.Array;
@@ -6,10 +8,13 @@ import java.lang.reflect.Modifier;
 import java.util.*;
 
 public class Main {
+
+    private static final String TEST_CASE_FILE_PATH = ".\\src\\main\\test\\TestCase.txt";
+
     public static void main(String[] args) throws Exception {
         Solution solution = new Solution();
         Optional<Method> method = Arrays.stream(solution.getClass().getDeclaredMethods()).filter(x -> Modifier.isPublic(x.getModifiers())).findFirst();
-        try (BufferedReader br = new BufferedReader(new FileReader(".\\src\\TestCase.txt"))) {
+        try (BufferedReader br = new BufferedReader(new FileReader(TEST_CASE_FILE_PATH))) {
             while (br.ready() && method.isPresent()) {
                 Object[] params = new Object[method.get().getParameterCount()];
                 for (int i = 0; i < params.length; i++) {

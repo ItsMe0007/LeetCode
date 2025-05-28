@@ -1,20 +1,19 @@
+package main.java;
+
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+
 import java.util.*;
 
 @SuppressWarnings("unused")
+@NoArgsConstructor
+@AllArgsConstructor
 public class ListNode {
     Integer val;
     ListNode next;
 
-    ListNode() {
-    }
-
     ListNode(int val) {
         this.val = val;
-    }
-
-    ListNode(int val, ListNode next) {
-        this.val = val;
-        this.next = next;
     }
 
     ListNode(int[] values) {
