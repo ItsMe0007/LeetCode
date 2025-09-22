@@ -1,20 +1,22 @@
 package main.java;
 
 import java.io.BufferedReader;
-import java.io.FileReader;
 import java.lang.reflect.Array;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.*;
 
 public class Main {
 
-    private static final String TEST_CASE_FILE_PATH = ".\\src\\main\\test\\TestCase.txt";
+    private static final Path TEST_CASE_FILE_PATH = Paths.get("src", "main", "test", "TestCase.txt");
 
     public static void main(String[] args) throws Exception {
         Solution solution = new Solution();
         Optional<Method> method = Arrays.stream(solution.getClass().getDeclaredMethods()).filter(x -> Modifier.isPublic(x.getModifiers())).findFirst();
-        try (BufferedReader br = new BufferedReader(new FileReader(TEST_CASE_FILE_PATH))) {
+        try (BufferedReader br = Files.newBufferedReader(TEST_CASE_FILE_PATH)) {
             while (br.ready() && method.isPresent()) {
                 Object[] params = new Object[method.get().getParameterCount()];
                 for (int i = 0; i < params.length; i++) {
