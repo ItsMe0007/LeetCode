@@ -1,6 +1,12 @@
 package main.java;
 
+import java.util.*;
+
+@SuppressWarnings("unused")
 class Solution {
+
+    public static final long MOD = 1000000007;
+
     public int test(
             int a, char b, float c, double d, String e, boolean f,
             int[] a1, char[] b1, float[] c1, double[] d1, String[] e1, boolean[] f1,
