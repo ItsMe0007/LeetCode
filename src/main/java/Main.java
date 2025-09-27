@@ -32,7 +32,7 @@ public class Main {
                 Object[] params = new Object[genericParams.length];
                 for (int i = 0; i < params.length; i++) {
                     String line = br.readLine();
-                    params[i] = parse(line.trim(), genericParams[i]);
+                    params[i] = parse(line.trim().replace("©leetcode", ""), genericParams[i]);
                 }
                 Object response = method.invoke(solution, params);
                 System.out.println(toString(response, genericReturn));
