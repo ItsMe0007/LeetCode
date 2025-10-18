@@ -16,6 +16,7 @@ public class Main {
     private static final Path TEST_CASE_FILE_PATH = Paths.get("src", "main", "test", "TestCase.txt");
 
     public static void main(String[] args) throws Exception {
+        long startTime = System.currentTimeMillis();
         Solution solution = new Solution();
         Optional<Method> methodOpt = Arrays.stream(solution.getClass().getDeclaredMethods())
                 .filter(m -> Modifier.isPublic(m.getModifiers()))
@@ -38,6 +39,7 @@ public class Main {
                 System.out.println(toString(response, genericReturn));
             }
         }
+        System.out.println("Time elapsed: " + (System.currentTimeMillis() - startTime) + "ms");
     }
 
     private static Object parse(String s, Type type) {
