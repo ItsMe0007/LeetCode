@@ -2,6 +2,8 @@ package main.java;
 
 import java.util.*;
 
+// ⚠️⚠️⚠️ Check return type constraints → maybe use long instead of int ⚠️⚠️⚠️
+
 @SuppressWarnings("unused")
 class Solution {
 
