@@ -13,6 +13,10 @@ public class RangeDiff {
         this.diff = new int[size + 1];
     }
 
+    public RangeDiff(int size) {
+        this(0, size - 1);
+    }
+
     public void addRangeInclusive(int start, int endInclusive, int delta) {
         diff[start - min] += delta;
         diff[(endInclusive - min) + 1] -= delta;
