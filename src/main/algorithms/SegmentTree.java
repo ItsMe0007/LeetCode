@@ -2,42 +2,26 @@ package main.algorithms;
 
 @SuppressWarnings("unused")
 public class SegmentTree {
-
     public static class SegmentNode {
         int start;
         int end;
-        int minIdx;
-        int maxIdx;
-        long sum;
+        long val;
 
-        public SegmentNode(int start, int end, int minIdx, int maxIdx, long sum) {
+        public SegmentNode(int start, int end, long val) {
             this.start = start;
             this.end = end;
-            this.minIdx = minIdx;
-            this.maxIdx = maxIdx;
-            this.sum = sum;
+            this.val = val;
         }
 
-        public SegmentNode(int idx, long sum) {
+        public SegmentNode(int idx, long val) {
             this.start = idx;
             this.end = idx;
-            this.minIdx = idx;
-            this.maxIdx = idx;
-            this.sum = sum;
-        }
-
-        public void update(int idx, int val) {
-            this.start = idx;
-            this.end = idx;
-            this.minIdx = idx;
-            this.maxIdx = idx;
-            this.sum = val;
+            this.val = val;
         }
 
         @Override
         public String toString() {
-            return String.format("range=[%d,%d], minIdx=%d, maxIdx=%d, sum=%d",
-                    start, end, minIdx, maxIdx, sum);
+            return String.format("range=[%d,%d], val=%d", start, end, val);
         }
     }
 
@@ -47,7 +31,7 @@ public class SegmentTree {
     final int leafSize;
     final int nonLeafSize;
     final SegmentNode[] tree;
-    final SegmentNode emptyNode = new SegmentNode(-1, -1, -1, -1, 0);
+    final SegmentNode emptyNode = new SegmentNode(-1, -1, 0);
 
     public SegmentTree(int[] arr) {
         this.arr = arr;
@@ -79,9 +63,7 @@ public class SegmentTree {
         return new SegmentNode(
                 left.start,
                 right.end,
-                arr[left.minIdx] <= arr[right.minIdx] ? left.minIdx : right.minIdx,
-                arr[left.maxIdx] >= arr[right.maxIdx] ? left.maxIdx : right.maxIdx,
-                left.sum + right.sum
+                merge(left.val, right.val)
         );
     }
 
@@ -123,10 +105,14 @@ public class SegmentTree {
     public void update(int idx, int val) {
         int parent = idx + nonLeafSize;
         arr[idx] = val;
-        tree[parent].update(idx, val);
+        tree[parent].val = val;
         while (parent != 0) {
             parent = parentIndex(parent);
             computeAndUpdateParent(parent);
         }
+    }
+
+    private long merge(long left, long right) {
+        return left + right;
     }
 }
