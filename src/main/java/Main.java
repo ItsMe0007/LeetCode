@@ -1,11 +1,8 @@
 package main.java;
 
 import java.io.BufferedReader;
-import java.lang.reflect.Array;
-import java.lang.reflect.Method;
-import java.lang.reflect.Modifier;
-import java.lang.reflect.ParameterizedType;
-import java.lang.reflect.Type;
+import java.io.IOException;
+import java.lang.reflect.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -15,7 +12,7 @@ public class Main {
 
     private static final Path TEST_CASE_FILE_PATH = Paths.get("src", "main", "test", "TestCase.txt");
 
-    public static void main(String[] args) throws Exception {
+    void main() throws IOException, InvocationTargetException, IllegalAccessException {
         long startTime = System.currentTimeMillis();
         Solution solution = new Solution();
         Optional<Method> methodOpt = Arrays.stream(solution.getClass().getDeclaredMethods())

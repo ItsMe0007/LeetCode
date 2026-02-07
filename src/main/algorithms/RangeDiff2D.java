@@ -3,8 +3,10 @@ package main.algorithms;
 @SuppressWarnings("unused")
 public class RangeDiff2D {
 
-    public final int minRow, minCol;
-    private final int rowSize, colSize;
+    private final int minRow;
+    private final int minCol;
+    private final int rowSize;
+    private final int colSize;
     private final int[][] diff;
 
     public RangeDiff2D(int minRow, int maxRow, int minCol, int maxCol) {
