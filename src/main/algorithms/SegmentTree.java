@@ -1,5 +1,7 @@
 package main.algorithms;
 
+import java.util.Arrays;
+
 @SuppressWarnings("unused")
 public class SegmentTree {
     public static class SegmentNode {
@@ -32,6 +34,16 @@ public class SegmentTree {
     final int nonLeafSize;
     final SegmentNode[] tree;
     final SegmentNode emptyNode = new SegmentNode(-1, -1, 0);
+
+    public SegmentTree(int n) {
+        this(new int[n]);
+    }
+
+    public SegmentTree(int n, int defaultValue) {
+        int[] baseValues = new int[n];
+        Arrays.fill(baseValues, defaultValue);
+        this(baseValues);
+    }
 
     public SegmentTree(int[] arr) {
         this.arr = arr;
@@ -85,6 +97,10 @@ public class SegmentTree {
 
     private boolean isRightChild(int node) {
         return (node & 1) == 0;
+    }
+
+    public int query(int idx) {
+        return arr[idx];
     }
 
     public SegmentNode query(int startIdx, int endIdx) {
