@@ -1,4 +1,4 @@
-package main.algorithms;
+package main.algorithms.utils;
 
 import java.util.Comparator;
 import java.util.List;

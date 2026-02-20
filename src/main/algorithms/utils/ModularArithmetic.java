@@ -1,7 +1,7 @@
-package main.algorithms;
+package main.algorithms.utils;
 
 @SuppressWarnings("unused")
-public class ModularArithmetic {
+public final class ModularArithmetic {
 
     private ModularArithmetic() {
     }
