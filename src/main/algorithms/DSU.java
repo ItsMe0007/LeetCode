@@ -58,7 +58,6 @@ public class DSU {
 
     public Map<Integer, List<Integer>> groups() {
         Map<Integer, List<Integer>> groupMap = new HashMap<>();
-        for (int u = 0; u < size; u++) findParent(u);
 
         for (int u = 0; u < size; u++) {
             groupMap.computeIfAbsent(findParent(u), _ -> new ArrayList<>()).add(u);
