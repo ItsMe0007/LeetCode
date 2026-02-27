@@ -48,6 +48,14 @@ public class DSU {
         return findParent(u) == findParent(v);
     }
 
+    public boolean isFullyConnected() {
+        int root = findParent(0);
+        for (int u = 1; u < size; u++) {
+            if (findParent(u) != root) return false;
+        }
+        return true;
+    }
+
     public Map<Integer, List<Integer>> groups() {
         Map<Integer, List<Integer>> groupMap = new HashMap<>();
         for (int u = 0; u < size; u++) findParent(u);
