@@ -46,4 +46,14 @@ public final class ModularArithmetic {
     public static long lcm(long x, long y) {
         return (x / gcd(x, y)) * y;
     }
+
+    public static long modularInverse(long a) {
+        return modularInverse(a, DEFAULT_MOD);
+    }
+
+    public static long modularInverse(long a, long mod) {
+        a %= mod;
+        if (a < 0) a += mod;
+        return power(a, mod - 2, mod);
+    }
 }
