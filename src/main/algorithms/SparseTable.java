@@ -43,7 +43,7 @@ public class SparseTable {
         return merge(leftBlock, rightBlock);
     }
 
-    public int query(int idx) {
+    public int get(int idx) {
         return table[0][idx];
     }
 

@@ -3,7 +3,7 @@ package main.algorithms;
 @SuppressWarnings("unused")
 public class RangeDiff {
 
-    public final int min;
+    private final int min;
     private final int size;
     private final int[] diff;
 

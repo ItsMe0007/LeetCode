@@ -3,7 +3,7 @@ package main.algorithms;
 @SuppressWarnings("unused")
 public abstract class PrefixSum2D {
     protected final long[][] ps;
-    public static final long DEFAULT_MOD = 1_000_000_007L;
+    private static final long DEFAULT_MOD = 1_000_000_007L;
 
     private PrefixSum2D(long[][] ps) {
         this.ps = ps;

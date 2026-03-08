@@ -34,7 +34,7 @@ public class BigNCR {
         }
     }
 
-    public static long power(long base, long exp, long mod) {
+    private long power(long base, long exp, long mod) {
         long result = 1;
         base %= mod;
         while (exp > 0) {

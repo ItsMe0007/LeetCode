@@ -3,7 +3,7 @@ package main.algorithms;
 @SuppressWarnings("unused")
 public abstract class PrefixSum {
     protected final long[] ps;
-    public static final long DEFAULT_MOD = 1_000_000_007L;
+    private static final long DEFAULT_MOD = 1_000_000_007L;
 
     private PrefixSum(long[] ps) {
         this.ps = ps;
