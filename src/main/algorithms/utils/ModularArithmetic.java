@@ -1,6 +1,6 @@
 package main.algorithms.utils;
 
-@SuppressWarnings("unused")
+@SuppressWarnings({"unused", "DuplicatedCode"})
 public final class ModularArithmetic {
 
     private ModularArithmetic() {
@@ -16,6 +16,8 @@ public final class ModularArithmetic {
         long result = 0;
         x %= mod;
         y %= mod;
+        if (x < 0) x += mod;
+        if (y < 0) y += mod;
         while (y > 0) {
             if ((y & 1) == 1) result = (result + x) % mod;
             x = (x << 1) % mod;
@@ -32,8 +34,8 @@ public final class ModularArithmetic {
         long result = 1;
         base %= mod;
         while (exp > 0) {
-            if ((exp & 1) == 1) result = multiply(result, base, mod);
-            base = multiply(base, base, mod);
+            if ((exp & 1) == 1) result = (result * base) % mod;
+            base = (base * base) % mod;
             exp >>= 1;
         }
         return result;

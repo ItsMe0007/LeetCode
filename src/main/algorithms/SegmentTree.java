@@ -4,27 +4,27 @@ import java.util.Arrays;
 
 @SuppressWarnings("unused")
 public class SegmentTree {
+    public static class SegmentNode {
+        private final int start;
+        private final int end;
+        private long val;
+
+        public SegmentNode(int start, int end, long val) {
+            this.start = start;
+            this.end = end;
+            this.val = val;
+        }
+
+        @Override
+        public String toString() {
+            return String.format("range=[%d,%d], val=%d", start, end, val);
+        }
+    }
+
     private final int[] arr;
     private final int nonLeafSize;
     private final SegmentNode[] tree;
     private final SegmentNode emptyNode = new SegmentNode(-1, -1, 0);
-    public SegmentTree(int[] arr) {
-        this.arr = arr;
-        int arrSize = arr.length;
-        int leafSize = (arrSize == 1) ? 1 : Integer.highestOneBit(arrSize - 1) << 1;
-        this.nonLeafSize = leafSize - 1;
-        int treeSize = leafSize + nonLeafSize;
-        this.tree = new SegmentNode[treeSize];
-
-        for (int leafIdx = nonLeafSize, arrIdx = 0; leafIdx < treeSize; ++leafIdx, ++arrIdx) {
-            if (arrIdx < arrSize) tree[leafIdx] = new SegmentNode(arrIdx, arr[arrIdx]);
-            else tree[leafIdx] = emptyNode;
-        }
-
-        for (int nonLeafIdx = nonLeafSize - 1; nonLeafIdx >= 0; --nonLeafIdx) {
-            computeAndUpdateParent(nonLeafIdx);
-        }
-    }
 
     public SegmentTree(int n) {
         this(new int[n]);
@@ -36,8 +36,22 @@ public class SegmentTree {
         this(baseValues);
     }
 
-    public int get(int idx) {
-        return arr[idx];
+    public SegmentTree(int[] arr) {
+        this.arr = arr;
+        int arrSize = arr.length;
+        int leafSize = (arrSize == 1) ? 1 : Integer.highestOneBit(arrSize - 1) << 1;
+        this.nonLeafSize = leafSize - 1;
+        int treeSize = leafSize + nonLeafSize;
+        this.tree = new SegmentNode[treeSize];
+
+        for (int leafIdx = nonLeafSize, arrIdx = 0; leafIdx < treeSize; ++leafIdx, ++arrIdx) {
+            if (arrIdx < arrSize) tree[leafIdx] = new SegmentNode(arrIdx, arrIdx, arr[arrIdx]);
+            else tree[leafIdx] = emptyNode;
+        }
+
+        for (int nonLeafIdx = nonLeafSize - 1; nonLeafIdx >= 0; --nonLeafIdx) {
+            computeAndUpdateParent(nonLeafIdx);
+        }
     }
 
     private void computeAndUpdateParent(int parent) {
@@ -76,29 +90,6 @@ public class SegmentTree {
         return (node & 1) == 0;
     }
 
-    public static class SegmentNode {
-        private final int start;
-        private final int end;
-        private long val;
-
-        public SegmentNode(int start, int end, long val) {
-            this.start = start;
-            this.end = end;
-            this.val = val;
-        }
-
-        public SegmentNode(int idx, long val) {
-            this.start = idx;
-            this.end = idx;
-            this.val = val;
-        }
-
-        @Override
-        public String toString() {
-            return String.format("range=[%d,%d], val=%d", start, end, val);
-        }
-    }
-
     public SegmentNode query(int startIdx, int endIdx) {
         return query(0, startIdx, endIdx);
     }
@@ -112,6 +103,10 @@ public class SegmentTree {
                 query(leftChildIndex(nodeIdx), startIdx, endIdx),
                 query(rightChildIndex(nodeIdx), startIdx, endIdx)
         );
+    }
+
+    public int get(int idx) {
+        return arr[idx];
     }
 
     public void update(int idx, int val) {
