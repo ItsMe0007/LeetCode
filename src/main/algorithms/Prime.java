@@ -2,6 +2,7 @@ package main.algorithms;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 @SuppressWarnings("unused")
@@ -56,15 +57,17 @@ public class Prime {
     }
 
     public List<Long> getPrimeFactors(long n) {
+        if (n <= 1) return Collections.emptyList();
+        if (n < isPrime.length && isPrime[(int) n]) return Collections.singletonList(n);
         List<Long> factors = new ArrayList<>();
-        if (n <= 1) return factors;
 
-        for (Integer p : primes) {
+        for (int p : primes) {
             if ((long) p * p > n) break;
             while (n % p == 0) {
                 factors.add((long) p);
                 n /= p;
             }
+            if (n < isPrime.length && isPrime[(int) n]) break;
         }
         if (n > 1) factors.add(n);
         return factors;
