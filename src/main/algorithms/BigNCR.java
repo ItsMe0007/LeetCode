@@ -1,6 +1,6 @@
 package main.algorithms;
 
-@SuppressWarnings("unused")
+@SuppressWarnings({"unused", "DuplicatedCode"})
 public class BigNCR {
     private static final long DEFAULT_MOD = 1_000_000_007L;
     private static final int DEFAULT_MAX_N = 1_000_000;
