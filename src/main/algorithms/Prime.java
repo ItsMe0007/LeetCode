@@ -56,18 +56,18 @@ public class Prime {
         return true;
     }
 
-    public List<Long> getPrimeFactors(long n) {
+    public List<Integer> getPrimeFactors(int n) {
         if (n <= 1) return Collections.emptyList();
-        if (n < isPrime.length && isPrime[(int) n]) return Collections.singletonList(n);
-        List<Long> factors = new ArrayList<>();
+        if (n < isPrime.length && isPrime[n]) return Collections.singletonList(n);
+        List<Integer> factors = new ArrayList<>();
 
         for (int p : primes) {
             if ((long) p * p > n) break;
             while (n % p == 0) {
-                factors.add((long) p);
+                factors.add(p);
                 n /= p;
             }
-            if (n < isPrime.length && isPrime[(int) n]) break;
+            if (n < isPrime.length && isPrime[n]) break;
         }
         if (n > 1) factors.add(n);
         return factors;
