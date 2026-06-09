@@ -1,19 +1,21 @@
 package main.algorithms;
 
 @SuppressWarnings({"unused", "DuplicatedCode"})
-public class SparseTable {
+public class SparseTableIndexed {
+    private final int[] arr;
     private final int n;
     private final int maxLog;
     private final int[][] table;
     private final int[] log2;
 
-    public SparseTable(int[] arr) {
+    public SparseTableIndexed(int[] arr) {
+        this.arr = arr;
         this.n = arr.length;
         this.log2 = new int[n + 1];
         populateLog2(n);
         this.maxLog = 1 + log2[n];
         this.table = new int[maxLog][n];
-        buildTable(arr);
+        buildTable();
     }
 
     private void populateLog2(int n) {
@@ -23,8 +25,8 @@ public class SparseTable {
         }
     }
 
-    private void buildTable(int[] arr) {
-        System.arraycopy(arr, 0, table[0], 0, n);
+    private void buildTable() {
+        for (int i = 0; i < n; i++) table[0][i] = i;
 
         for (int k = 1; k < maxLog; k++) {
             int blockLen = 1 << k;
@@ -43,11 +45,7 @@ public class SparseTable {
         return merge(leftBlock, rightBlock);
     }
 
-    public int get(int idx) {
-        return table[0][idx];
-    }
-
-    private int merge(int left, int right) {
-        return Math.min(left, right);
+    public int merge(int left, int right) {
+        return arr[left] <= arr[right] ? left : right;
     }
 }
