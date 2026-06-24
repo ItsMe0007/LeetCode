@@ -73,37 +73,6 @@ public class Matrix {
         long[][] tempMat = new long[m][other.n];
 
         for (int i = 0; i < m; i++) {
-            for (int k = 0; k < n; k++) {
-                if (mat[i][k] == 0) continue;
-                for (int j = 0; j < other.n; j++) {
-                    tempMat[i][j] = tempMat[i][j] + mat[i][k] * other.mat[k][j];
-                }
-            }
-        }
-        return new Matrix(tempMat);
-    }
-
-    public Matrix multiply(Matrix other, long mod) {
-        long[][] tempMat = new long[m][other.n];
-
-        for (int i = 0; i < m; i++) {
-            for (int k = 0; k < n; k++) {
-                if (mat[i][k] == 0) continue;
-                for (int j = 0; j < other.n; j++) {
-                    tempMat[i][j] = (tempMat[i][j] + mat[i][k] * other.mat[k][j]) % mod;
-                }
-            }
-        }
-        return new Matrix(tempMat);
-    }
-
-/*
-TODO TEST cached version for performance
-
-    public Matrix multiply(Matrix other) {
-        long[][] tempMat = new long[m][other.n];
-
-        for (int i = 0; i < m; i++) {
             long[] tempRow = tempMat[i];
             for (int k = 0; k < n; k++) {
                 long val = mat[i][k];
@@ -133,7 +102,6 @@ TODO TEST cached version for performance
         }
         return new Matrix(tempMat);
     }
-*/
 
     public Matrix pow(long exp) {
         Matrix res = identity(n);
