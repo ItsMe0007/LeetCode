@@ -103,7 +103,7 @@ public class Matrix {
         return new Matrix(tempMat);
     }
 
-    public Matrix pow(long exp) {
+    public Matrix power(long exp) {
         Matrix res = identity(n);
         Matrix base = this;
 
@@ -115,7 +115,7 @@ public class Matrix {
         return res;
     }
 
-    public Matrix pow(long exp, long mod) {
+    public Matrix power(long exp, long mod) {
         Matrix res = identity(n);
         Matrix base = this;
 
