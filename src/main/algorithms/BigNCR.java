@@ -54,4 +54,17 @@ public class BigNCR {
         if (r < 0 || r > n) return 0;
         return (fact[n] * invFact[n - r]) % mod;
     }
+
+    /**
+     * Distribute {@code k} candies to {@code n} children,
+     * where each child receive [0, k] candies.
+     *
+     * <p>Stars and Bars : {@code C(n + k - 1, k)}.
+     *
+     * @param n number of children
+     * @param k number of candies
+     */
+    public long starsAndBars(int n, int k) {
+        return nCr(n + k - 1, k);
+    }
 }
