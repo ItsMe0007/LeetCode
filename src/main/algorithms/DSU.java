@@ -21,6 +21,12 @@ public class DSU {
         }
     }
 
+    private DSU(int[] parent, int[] rank, int size) {
+        this.parent = parent;
+        this.rank = rank;
+        this.size = size;
+    }
+
     public int findParent(int node) {
         if (node == parent[node]) {
             return node;
@@ -65,13 +71,7 @@ public class DSU {
         return groupMap;
     }
 
-    @SuppressWarnings("MethodDoesntCallSuperMethod")
-    @Override
-    public DSU clone() {
-        DSU copy = new DSU(parent.length);
-        System.arraycopy(parent, 0, copy.parent, 0, parent.length);
-        System.arraycopy(rank, 0, copy.rank, 0, rank.length);
-        copy.size = this.size;
-        return copy;
+    public DSU copy() {
+        return new DSU(parent.clone(), rank.clone(), size);
     }
 }
