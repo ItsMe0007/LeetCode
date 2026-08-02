@@ -7,14 +7,14 @@ public class RangeDiff2D {
     private final int minCol;
     private final int rowSize;
     private final int colSize;
-    private final int[][] diff;
+    private final long[][] diff;
 
     public RangeDiff2D(int minRow, int maxRow, int minCol, int maxCol) {
         this.minRow = minRow;
         this.minCol = minCol;
         this.rowSize = maxRow - minRow + 1;
         this.colSize = maxCol - minCol + 1;
-        this.diff = new int[rowSize + 1][colSize + 1];
+        this.diff = new long[rowSize + 1][colSize + 1];
     }
 
     public RangeDiff2D(int rowSize, int colSize) {
@@ -32,12 +32,12 @@ public class RangeDiff2D {
         diff[row2 + 1][col2 + 1] += delta;
     }
 
-    public int[][] toArray() {
-        int[][] res = new int[rowSize][colSize];
+    public long[][] toArray() {
+        long[][] res = new long[rowSize][colSize];
 
         for (int i = 0; i < rowSize; i++) {
             for (int j = 0; j < colSize; j++) {
-                int val = diff[i][j];
+                long val = diff[i][j];
                 if (i > 0) val += res[i - 1][j];
                 if (j > 0) val += res[i][j - 1];
                 if (i > 0 && j > 0) val -= res[i - 1][j - 1];

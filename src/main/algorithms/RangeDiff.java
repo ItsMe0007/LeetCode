@@ -5,12 +5,12 @@ public class RangeDiff {
 
     private final int min;
     private final int size;
-    private final int[] diff;
+    private final long[] diff;
 
     public RangeDiff(int min, int max) {
         this.min = min;
         this.size = max - min + 1;
-        this.diff = new int[size + 1];
+        this.diff = new long[size + 1];
     }
 
     public RangeDiff(int size) {
@@ -22,9 +22,9 @@ public class RangeDiff {
         diff[(endInclusive - min) + 1] -= delta;
     }
 
-    public int[] toArray() {
-        int[] res = new int[size];
-        int runningSum = 0;
+    public long[] toArray() {
+        long[] res = new long[size];
+        long runningSum = 0;
 
         for (int i = 0; i < size; ++i) {
             runningSum += diff[i];
